@@ -19,6 +19,7 @@ jobs:
         run: echo 'DATE='`date` ; echo 'WHO='`whoami` ; echo 'EVENT='${{ github.event_name }} ; echo 'BRANCH='${GITHUB_REF##*/} ;
         
       - name: INFO-command
+        uses: actions/checkout@v2
         with:
         command: |
             echo 'DATE='`date`

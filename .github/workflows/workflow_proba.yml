@@ -19,12 +19,12 @@ jobs:
         run: |
             echo 'DATE='`date`
             echo 'WHO='`whoami`
-            echo 'EVENT='${{ github.event_name }} ;
-            echo 'BRANCH='${GITHUB_REF##*/} ;
+            echo 'EVENT='${{ github.event_name }}
+            echo 'BRANCH='${GITHUB_REF##*/}
             echo 'BRANCHes'
-            echo 'BRANCH_v1='${{ actions/checkout@v1 }}
-            echo 'BRANCH_v2='${{ actions/checkout@v2 }}
-            echo 'BRANCH_v3='${{ actions/checkout@v3 }}
+            echo 'BRANCH_v1='${actions/checkout@v1}
+            echo 'BRANCH_v2='${actions/checkout@v2}
+            echo 'BRANCH_v3='${actions/checkout@v3}
             
       # event
         

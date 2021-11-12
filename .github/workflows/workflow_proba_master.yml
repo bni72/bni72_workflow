@@ -1,4 +1,4 @@
-name: Workflow bni72_proba
+name: Workflow bni72_proba_master
 
 on:
   pull_request:
@@ -8,6 +8,7 @@ on:
 
 jobs:
   proba:
+  if: contains('refs/heads/master', github.ref)
     runs-on: ubuntu-latest
     steps:
 

@@ -1,0 +1,63 @@
+name: Workflow bni72_proba
+
+on:
+  pull_request:
+  push:
+    branches:
+      [ master, dev, stage ]
+
+jobs:
+  proba:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+      
+      # command-run
+        
+      - name: INFO-run
+        run: echo 'DATE='`date` ; echo 'WHO='`whoami` ; echo 'EVENT='${{ github.event_name }} ; echo 'BRANCH='${GITHUB_REF##*/} ;
+        
+      - name: INFO-command
+        with:
+        command: |
+            echo 'DATE='`date`
+            echo 'WHO='`whoami`
+            echo 'EVENT='${{ github.event_name }} ;
+            echo 'BRANCH='${GITHUB_REF##*/} ;
+            
+      # event
+        
+      - name: STEP for always
+        if: always()
+        run: echo ${{ github.ref }}
+        
+      - name: STEP for pull_request
+        if: ${{ github.event_name == 'pull_request' }}
+        run: echo 'All for pull_request'
+        
+      - name: STEP for push
+        if: ${{ github.event_name == 'push' }}
+        run: echo 'All for push'
+        
+      - name: STEP for merge
+        if: ${{ github.event_name == 'merge' }}
+        run: echo 'All for pull_request'
+        
+      # branch
+        
+      - name: STEP for dev
+        if: contains('refs/heads/master', github.ref)
+        run: echo 'All for master'
+        
+      - name: STEP for dev
+        if: contains('refs/heads/dev', github.ref)
+        run: echo 'All for dev'
+        
+      - name: STEP for stage
+        if: contains('refs/heads/stage', github.ref)
+        run: echo 'All for stage'
+
+      - name: STEP for merge
+        if: contains('refs/heads/merge', github.ref)
+        run: echo 'All for stage'
